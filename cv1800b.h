@@ -12,13 +12,13 @@ struct i2c_registers {
     reg32_t CON;
     reg32_t TAR;
     reg32_t SAR;
-    reg32_t RESERVED1;
+    reg32_t __RESERVED1;
     reg32_t DATA_CMD;
     reg32_t SS_SCL_HCNT;
     reg32_t SS_SCL_LCNT;
     reg32_t FS_SCL_HCNT;
     reg32_t FS_SCL_LCNT;
-    reg32_t RESERVED2[2];
+    reg32_t __RESERVED2[2];
     reg32_t INTR_STAT;
     reg32_t INTR_MASK;
     reg32_t RAW_INTR_STAT;
@@ -68,10 +68,10 @@ struct uart_registers {
     reg32_t MCR;
     reg32_t LSR;
     reg32_t MSR;
-    reg32_t RESERVED1;
+    reg32_t __RESERVED1;
     reg32_t LPDLL;
     reg32_t LPDLH;
-    reg32_t RESERVED2[2];
+    reg32_t __RESERVED2[2];
     reg32_t SRBR_STHR;
     reg32_t RESERVER3[15];
     reg32_t FAR;
@@ -149,7 +149,7 @@ struct sdio_registers {
     reg32_t AUTO_CMD_ERR_AND_HOST_CTL2;
     reg32_t CAPABILITIES1;
     reg32_t CAPABILITIES2;
-    reg32_t RESERVED1[2];
+    reg32_t __RESERVED1[2];
     reg32_t FORCE_EVENT_ERR;
     reg32_t ADMA_ERR_STS;
     reg32_t ADMA_SADDR_L;
@@ -158,13 +158,13 @@ struct sdio_registers {
     reg32_t PRESENT_VUL_HS_SDR12;
     reg32_t PRESENT_VUL_SDR25_SDR_50;
     reg32_t PRESENT_VUL_SDR104_DDR50;
-    reg32_t RESERVED2[35];
+    reg32_t __RESERVED2[35];
     reg32_t SLOT_INT_AND_HOST_VER;
     reg32_t RESERVER3[64];
     reg32_t EMMC_CTRL;
     reg32_t CDET_TOUT_CTL;
     reg32_t MBIU_CTRL;
-    reg32_t RESERVED4[12];
+    reg32_t __RESERVED4[12];
     reg32_t PHY_TX_RX_DLY;
     reg32_t PHY_DS_DLY;
     reg32_t PHY_DLY_STS;
@@ -178,7 +178,7 @@ struct sdio_registers {
 struct gpio_registers {
     reg32_t SWPORTA_DR;
     reg32_t SWPORTA_DDR;
-    reg32_t RESERVED1[10];
+    reg32_t __RESERVED1[10];
     reg32_t INTEN;
     reg32_t INTMASK;
     reg32_t INTTYPE_LEVEL;
@@ -188,7 +188,7 @@ struct gpio_registers {
     reg32_t DEBOUNCE;
     reg32_t PORTA_EOI;
     reg32_t EXT_PORTA;
-    reg32_t RESERVED2[3];
+    reg32_t __RESERVED2[3];
     reg32_t LS_SYNC;
 };
 
@@ -197,6 +197,69 @@ struct gpio_registers {
 #define GPIO1       ((struct gpio_registers *) (GPIO_BASE_ADDRESS + 0x1000))
 #define GPIO2       ((struct gpio_registers *) (GPIO_BASE_ADDRESS + 0x2000))
 #define GPIO3       ((struct gpio_registers *) (GPIO_BASE_ADDRESS + 0x3000))
+
+
+struct usbc_registers {
+    reg32_t GOTGCTL;
+    reg32_t GOTGINT;
+    reg32_t GAHBCFG;
+    reg32_t GUSBCFG;
+    reg32_t GRSTCTL;
+    reg32_t GINTSTS;
+    reg32_t GINTMSK;
+    reg32_t __RESERVED1[8];
+    reg32_t GUID;
+    reg32_t __RESERVED2[5];
+    reg32_t GLPMCFG;
+    reg32_t GPWRDN;
+    reg32_t __RESERVED3[233];
+    reg32_t HCFG;
+    reg32_t HFIR;
+    reg32_t HFNUM;
+    reg32_t HPTXSTS;
+    reg32_t HAINT;
+    reg32_t HAINTMSK;
+    reg32_t HFLBADDR;
+    reg32_t __RESERVED4[56];
+    reg32_t HCCHARN;
+    reg32_t __RESERVED5[4];
+    reg32_t HCDMAN;
+    reg32_t __RESERVED6;
+    reg32_t HCDMABN;
+    reg32_t __RESERVED7[184];
+    reg32_t DCFG;
+    reg32_t DCTL;
+    reg32_t DSTS;
+    reg32_t __RESERVED8;
+    reg32_t DIEPMSK;
+    reg32_t DOEPMSK;
+    reg32_t DAINT;
+    reg32_t DAINTMSK;
+    reg32_t __RESERVED9[5];
+    reg32_t DIEPEMPMSK;
+    reg32_t DEACHINT;
+    reg32_t DEACHINTMSK;
+};
+
+#define USBC        ((struct usbc_registers *) 0x04340000)
+
+
+struct saradc_registers {
+    reg32_t __RESERVED1;
+    reg32_t CTRL;
+    reg32_t STATUS;
+    reg32_t CYC_SET;
+    reg32_t __RESERVED2;
+    reg32_t RESULT[3];
+    reg32_t INTR_EN;
+    reg32_t INTR_CLR;
+    reg32_t INTR_STA;
+    reg32_t INTR_RAW;
+};
+
+#define SARADC      ((struct saradc_registers *) 0x030F0000)
+
+
 
 
 
